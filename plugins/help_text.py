@@ -74,7 +74,7 @@ async def start(bot, update):
 
                 ],
                 [
-                    InlineKeyboardButton('⚠️ Informations ⚠️', url='https://t.me/MalayaliAll/35'),
+                    InlineKeyboardButton('ℹ️ Informations ℹ️', url='https://t.me/MalayaliAll/35'),
                    
                 ]
             ]
