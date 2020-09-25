@@ -31,7 +31,7 @@ import database.database as sql
 
 @pyrogram.Client.on_message(pyrogram.Filters.command(["generatecustomthumbnail"]))
 async def generate_custom_thumbnail(bot, update):
-    if update.from_user.id in Config.BANNED_USERS:
+    if update.from_user.id not in Config.AUTH_USERS:
         await bot.delete_messages(
             chat_id=update.chat.id,
             message_ids=update.message_id,
@@ -87,7 +87,7 @@ async def generate_custom_thumbnail(bot, update):
 
 @pyrogram.Client.on_message(pyrogram.Filters.photo)
 async def save_photo(bot, update):
-    if update.from_user.id in Config.BANNED_USERS:
+    if update.from_user.id not in Config.AUTH_USERS:
         await bot.delete_messages(
             chat_id=update.chat.id,
             message_ids=update.message_id,
@@ -123,7 +123,7 @@ async def save_photo(bot, update):
 
 @pyrogram.Client.on_message(pyrogram.Filters.command(["deletethumbnail"]))
 async def delete_thumbnail(bot, update):
-    if update.from_user.id in Config.BANNED_USERS:
+    if update.from_user.id not in Config.AUTH_USERS:
         await bot.delete_messages(
             chat_id=update.chat.id,
             message_ids=update.message_id,
