@@ -33,11 +33,11 @@ from PIL import Image
 
 @pyrogram.Client.on_message(pyrogram.Filters.command(["c2v"]))
 async def convert_to_video(bot, update):
-    if update.from_user.id in Config.BANNED_USERS:
-        await bot.send_message(
+    if update.from_user.id not in Config.AUTH_USERS:
+        await bot.delete_messages(
             chat_id=update.chat.id,
-            text=Translation.BANNED_USER_TEXT,
-            reply_to_message_id=update.message_id
+            message_ids=update.message_id,
+            revoke=True
         )
         return
     TRChatBase(update.from_user.id, update.text, "c2v")
