@@ -22,14 +22,14 @@ else:
 # the Strings used for this "thing"
 from translation import Translation
 
-import pyrogram
+import pyrogram import Client, filters
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
 from helper_funcs.chat_base import TRChatBase
 import database.database as sql
 
 
-@pyrogram.Client.on_message(pyrogram.Filters.command(["generatecustomthumbnail"]))
+@Client.on_message(filters.command(["generatecustomthumbnail"]))
 async def generate_custom_thumbnail(bot, update):
     if update.from_user.id in Config.BANNED_USERS:
         await bot.delete_messages(
@@ -85,7 +85,7 @@ async def generate_custom_thumbnail(bot, update):
         )
 
 
-@pyrogram.Client.on_message(pyrogram.Filters.photo)
+@Client.on_message(filters.photo)
 async def save_photo(bot, update):
     if update.from_user.id in Config.BANNED_USERS:
         await bot.delete_messages(
@@ -121,7 +121,7 @@ async def save_photo(bot, update):
         )
 
 
-@pyrogram.Client.on_message(pyrogram.Filters.command(["deletethumbnail"]))
+@Client.on_message(filters.command(["deletethumbnail"]))
 async def delete_thumbnail(bot, update):
     if update.from_user.id in Config.BANNED_USERS:
         await bot.delete_messages(
