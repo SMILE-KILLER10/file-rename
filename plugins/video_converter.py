@@ -18,7 +18,7 @@ else:
 # the Strings used for this "thing"
 from translation import Translation
 
-import pyrogram
+import pyrogram import Client, filters
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
 from helper_funcs.chat_base import TRChatBase
@@ -31,7 +31,7 @@ from hachoir.parser import createParser
 from PIL import Image
 
 
-@pyrogram.Client.on_message(pyrogram.Filters.command(["c2v"]))
+@Client.on_message(filters.command(["c2v"]))
 async def convert_to_video(bot, update):
     if update.from_user.id in Config.BANNED_USERS:
         await bot.send_message(
