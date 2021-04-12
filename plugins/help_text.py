@@ -10,13 +10,8 @@ logger = logging.getLogger(__name__)
 
 import os
 import sqlite3
-from pyrogram import (
-    Client,
-    Filters,
-    InlineKeyboardMarkup,
-    InlineKeyboardButton
-)
-
+from pyrogram import Client, filters
+from pyrogram.type import InlineKeyboardMarkup, InlineKeyboardButton
 
 # the secret configuration specific things
 if bool(os.environ.get("WEBHOOK", False)):
@@ -38,7 +33,7 @@ def GetExpiryDate(chat_id):
     return expires_at
 
 
-@pyrogram.Client.on_message(pyrogram.Filters.command(["help"]))
+@Client.on_message(filters.command(["help"]))
 async def help_user(bot, update):
     # logger.info(update)
     TRChatBase(update.from_user.id, update.text, "/help")
@@ -48,7 +43,7 @@ async def help_user(bot, update):
         reply_to_message_id=update.message_id
     )
 
-@pyrogram.Client.on_message(pyrogram.Filters.command(["about"]))
+@Client.on_message(filters.command(["about"]))
 async def about_meh(bot, update):
     # logger.info(update)
     TRChatBase(update.from_user.id, update.text, "/about")
@@ -59,7 +54,7 @@ async def about_meh(bot, update):
         disable_web_page_preview=True,
         reply_to_message_id=update.message_id
     )
-@pyrogram.Client.on_message(pyrogram.Filters.command(["start"]))
+@Client.on_message(filters.command(["start"]))
 async def start(bot, update):
     # logger.info(update)
     TRChatBase(update.from_user.id, update.text, "/start")
@@ -82,7 +77,7 @@ async def start(bot, update):
         reply_to_message_id=update.message_id
     )
 
-@pyrogram.Client.on_message(pyrogram.Filters.command(["upgrade"]))
+@Client.on_message(filters.command(["upgrade"]))
 async def upgrade(bot, update):
     # logger.info(update)
     TRChatBase(update.from_user.id, update.text, "/upgrade")
