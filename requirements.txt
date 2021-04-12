@@ -4,9 +4,9 @@ git+git://github.com/google/chatbase-python.git
 hachoir
 numpy
 Pillow
-https://github.com/prgofficial/pyrogram/archive/asyncio-dev.zip
+Pyrogram
 requests
 tgcrypto
-sqlalchemy
+sqlalchemy==1.3.23
 psycopg2-binary
 feedparser
